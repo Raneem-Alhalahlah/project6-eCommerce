@@ -1,0 +1,113 @@
+﻿@model IEnumerable<project_6_eCommerce.Models.Product>
+@{
+    ViewBag.Title = "product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <head>
+
+        <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    </head>
+}
+
+<style>
+    /* Container styling */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        /* Label styling */
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+    /* Dropdown styling */
+    .form-control {
+        width: 28%;
+        padding: 19px;
+        font-size: 19px;
+        border: 3px solid #f7444e8c;
+        border-radius: 5px;
+        box-shadow: inset 0 1px 3px rgb(255 243 243);
+        background-color: #fff;
+        transition: border-color 0.3s ease-in-out;
+        appearance: none; /* Remove default arrow */
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 5"><path fill="%23f7444e" d="M0 0l5 5 5-5z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 12px;
+    }
+        /* Focused dropdown styling */
+        .form-control:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 5px rgb(255 243 243);
+        }
+
+        /* Styling for dropdown options */
+        .form-control option {
+            padding: 10px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Hover effect for dropdown */
+        .form-control:hover {
+            border-color: #2980b9;
+        }
+</style>
+
+
+
+<section class="product_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Our <span>products</span>
+            </h2>
+        </div>
+
+        <!-- نموذج البحث حسب الفئة -->
+        <form method="get" asp-action="product" asp-controller="Shop">
+            <div class="form-group">
+                <label for="category">Choose a category:</label>
+                <select id="category" name="categoryId" class="form-control" onchange="this.form.submit()">
+                    <option value="">All Categories</option>
+                    @foreach (var category in ViewBag.Categories as SelectList)
+                    {
+                        <option value="@category.Value" @(ViewBag.SelectedCategoryId == category.Value ? "selected" : "")>@category.Text</option>
+                    }
+                </select>
+            </div>
+        </form>
+
+        <!-- عرض المنتجات -->
+        <form action="@Url.Action("AddAllToCart", "Shop")" method="post">
+
+            <div class="row">
+                @foreach (var product in Model)
+                {
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="box">
+                            <div class="option_container">
+                                <div class="options">
+
+                                    <a href="@Url.Action("DetailsOfProduct", "Shop", new { id = product.ProductId })" class="option2">Details</a>
+                                </div>
+                            </div>
+                            <div class="img-box">
+                                <img src="@Url.Content($"~/Imges1/{product.ImageUrl}")" alt="Product Image">
+                            </div>
+                            <div class="detail-box">
+                                <h5>@product.ProductName</h5>
+                                <h6>@product.Price $</h6>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            </form>
+
+    </div>
+</section>

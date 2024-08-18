@@ -1,0 +1,172 @@
+﻿@model project_6_eCommerce.Models.Product
+@{
+    ViewBag.Title = "DetailsOfProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+</head>
+<style>
+    .icon-hover:hover {
+        border-color: #3b71ca !important;
+        background-color: white !important;
+        color: #3b71ca !important;
+    }
+
+        .icon-hover:hover i {
+            color: #3b71ca !important;
+        }
+    input[type="submit"] {
+        position: relative;
+        top: 43px;
+        border-radius: 6px;
+        background: #f7444e;
+    }
+
+
+    a.btn.btn-secondary {
+        position: relative;
+        top: 53px;
+        left: 225px;
+        
+    }
+
+</style>
+
+
+
+
+<section class="py-5">
+    <div class="container">
+        <div class="row gx-5">
+            <aside class="col-lg-6">
+                <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                    <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" src="@Url.Content($"~/Imges1/{Model.ImageUrl}")">
+                        <img style="max-width: 80%; max-height: 80vh; margin: auto;" class="rounded-4 fit" src="@Url.Content($"~/Imges1/{Model.ImageUrl}")" alt="@Model.ProductName" />
+                    </a>
+                </div>
+            </aside>
+            <main class="col-lg-6">
+                <div class="ps-lg-3">
+                    <h4 class="title text-dark">
+                        @Model.ProductName
+                    </h4>
+
+                    <p>
+                        @Model.Description
+                    </p>
+
+
+                    <div class="mb-3">
+                        <span class="h5">Price: @Model.Price$</span>
+                    </div>
+                    <form action="/Shop/AddToCart" method="post" >
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("ProductID", Model.ProductId)
+
+                        <div class="quantity-container">
+
+                            <input type="number" name="Quantity" id="quantityInput" value="1" min="1" class="quantity-input" />
+                            <button type="button" class="quantity-btn" id="decrement"><i class="fas fa-minus">-</i></button>
+                            <button type="button" class="quantity-btn" id="increment"><i class="fas fa-plus">+</i></button>
+                        </div>
+
+                        <input type="submit" value="Add to cart" />
+                    </form>
+
+
+                 
+
+                    <a href="@Url.Action("product", "Shop")" class="btn btn-secondary">Back to Products</a>
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const quantityInput = document.getElementById('quantityInput');
+        const decrementButton = document.getElementById('decrement');
+        const incrementButton = document.getElementById('increment');
+        const addToCartForm = document.getElementById('addToCartForm');
+        const reviewForm = document.getElementById('reviewForm');
+
+        decrementButton.addEventListener('click', function () {
+            let currentQuantity = parseInt(quantityInput.value, 10);
+            if (currentQuantity > 1) {
+                quantityInput.value = currentQuantity - 1;
+            }
+        });
+
+        incrementButton.addEventListener('click', function () {
+            let currentQuantity = parseInt(quantityInput.value, 10);
+            quantityInput.value = currentQuantity + 1;
+        });
+
+        addToCartForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            Swal.fire({
+                icon: 'success',
+                title: 'Added to Cart',
+                text: 'The product has been added to your cart!',
+                confirmButtonColor: '#153448'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    addToCartForm.submit(); // Proceed with the form submission
+                }
+            });
+        });
+
+        reviewForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            Swal.fire({
+                icon: 'success',
+                title: 'Review Submitted',
+                text: 'Your review has been submitted successfully!',
+                confirmButtonColor: '#153448'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    reviewForm.submit();
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

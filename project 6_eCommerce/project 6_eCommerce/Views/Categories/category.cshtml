@@ -1,0 +1,223 @@
+﻿@model IEnumerable<project_6_eCommerce.Models.Category>
+
+@{
+    ViewBag.Title = "category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <title>Home - Categories</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+</head>
+<style>
+    section.slider_section {
+        position: relative;
+        left: -121px;
+        width: 122%;
+    }
+    .slider_section .detail-box p {
+        color: white;
+        font-size: 19px;
+        margin-top: 20px;
+        margin-bottom: 1.5rem;
+       
+    }
+    .slider_section .detail-box a {
+        display: inline-block;
+        padding: 12px 45px;
+        background-color: #ff5b64b8;
+        border: 1px solid #f7444e;
+        color: #ffffff;
+        border-radius: 10PX;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        margin-top: 10px;
+        font-weight: 700;
+    }
+    .categories_section {
+        padding: 30px 0;
+    }
+
+    .heading_container {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+        .heading_container h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+        }
+    .navbar-brand span {
+        font-weight: bold;
+        font-size: 21px;
+        color: #000000;
+    }
+    /* Card Styling */
+    .card {
+        border: 2px solid #508bfc; /* Border color */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        border-radius: 0.5rem; /* Rounded corners */
+        overflow: hidden; /* Ensures border-radius works on child elements */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    }
+
+        .card:hover {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+        }
+
+    .card-img-top {
+        object-fit: cover; /* Ensures the image covers the area */
+        height: 200px; /* Fixed height for the image */
+        border-top-left-radius: 0.5rem; /* Rounded top left corner */
+        border-top-right-radius: 0.5rem; /* Rounded top right corner */
+    }
+
+    .card-body {
+        text-align: center; /* Centers text inside the card */
+    }
+
+    .card-title {
+        font-size:  2.25rem; /* Font size for the card title */
+        font-weight: 600; /* Bold font for the title */
+        color: red; /* Color for the title */
+    }
+
+    .btn-primary {
+        background-color: black; /* Button background color */
+        border: none; /* Remove default border */
+        padding: 10px 20px; /* Padding inside the button */
+        border-radius: 0.25rem; /* Rounded corners for the button */
+        color: #fff; /* Button text color */
+        font-weight: 600; /* Bold font for the button text */
+    }
+
+        .btn-primary:hover {
+            background-color: #4065d3; /* Darker shade on hover */
+        }
+</style>
+
+<body>
+
+    <section class="slider_section">
+        <div class="slider_bg_box">
+            <img src="@Url.Content("~/images/StockCake-Travel Gear Ready_1723966728.jpg")" alt="Slider Background">
+        </div>
+        <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7 col-lg-6">
+                                <div class="detail-box">
+                                    <h1>
+                                        <span>
+                                            Sale 20% Off
+                                        </span>
+                                        <br>
+                                        On Everything
+                                    </h1>
+                                    <p class="section1p">
+                                        Explore our premium collection of bags designed for every need: travel, computer, and sports. Enjoy high quality and stylish designs that make every journey and activity more comfortable and fashionable.
+                                    </p>
+                                    <div class="btn-box">
+                                        <a href="@Url.Action("product", "Shop")" class="btn1">
+                                            Shop Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    @*about*@
+    <section class="why_section layout_padding">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>
+                    Why Shop With Us
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <!-- SVG Code Here -->
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                Fast Delivery
+                            </h5>
+                            <p>
+                                Get your bags quickly with our efficient delivery service.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <!-- SVG Code Here -->
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                Best Quality
+                            </h5>
+                            <p>
+                                Our travel, computer, and sports bags are crafted from the finest materials.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <!-- SVG Code Here -->
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                Great Customer Service
+                            </h5>
+                            <p>
+                                Experience exceptional support with our dedicated customer service team.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    @*catsgoyr*@
+<section class="categories_section layout_padding">
+    <div class="container mt-4">
+        <div class="heading_container heading_center">
+            <h2>
+                Categories
+            </h2>
+        </div>
+
+        <div class="row">
+            @foreach (var category in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm border-0">
+                        <img src="@Url.Content($"~/Images/{category.ImageUrl}")" class="card-img-top" alt="@category.CategoryName" style="object-fit: cover; height: 388px;" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title" style="font-size: 1.25rem; font-weight: 600;">@category.CategoryName</h5>
+                            <a href="@Url.Action("product", "Shop", new { categoryId = category.CategoryId })" class="btn btn-primary" style="background-color: black; border: none; padding: 10px 20px; ">Go to Shop</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+</body>
